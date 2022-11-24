@@ -7,7 +7,7 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: fastfoodbackend
-  name: fastfood_backend
+  name: sfastfoodbackend
 spec:
   ports:
     - name: "8094"
