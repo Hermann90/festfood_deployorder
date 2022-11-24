@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
-    io.kompose.service: fastfood-frontend
-  name: fastfood-frontend
+    io.kompose.service: fastfoodfrontend
+  name: fastfoodfrontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: fastfood-frontend
+      io.kompose.service: fastfoodfrontend
   strategy: {}
   template:
     metadata:
@@ -24,11 +24,11 @@ spec:
         io.kompose.network/back-tier: "true"
         io.kompose.network/db-tier: "true"
         io.kompose.network/front-tier: "true"
-        io.kompose.service: fastfood-frontend
+        io.kompose.service: fastfoodfrontend
     spec:
       containers:
         - image: hermann90/fastfood_frontend:latest
-          name: fastfood-frontend
+          name: fastfoodfrontend
           ports:
             - containerPort: 4200
           resources: {}

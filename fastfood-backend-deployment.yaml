@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.26.0 (40646f47)
   creationTimestamp: null
   labels:
-    io.kompose.service: fastfood-backend
-  name: fastfood-backend
+    io.kompose.service: fastfoodbackend
+  name: fastfoodbackend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: fastfood-backend
+      io.kompose.service: fastfoodbackend
   strategy: {}
   template:
     metadata:
@@ -23,7 +23,7 @@ spec:
       labels:
         io.kompose.network/back-tier: "true"
         io.kompose.network/db-tier: "true"
-        io.kompose.service: fastfood-backend
+        io.kompose.service: fastfoodbackend
     spec:
       containers:
         - env:
@@ -36,7 +36,7 @@ spec:
             - name: MYSQL_USER
               value: admin
           image: hermann90/fastfood_backend:latest
-          name: fastfood-backend
+          name: fastfoodbackend
           ports:
             - containerPort: 8094
           resources: {}
