@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: fastfood-backend
+  name: fastfood-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: fastfood-backend
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/back-tier: "true"
+        io.kompose.network/db-tier: "true"
+        io.kompose.service: fastfood-backend
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_DATABASE
+              value: userauth
+            - name: MYSQL_HOST
+              value: db
+            - name: MYSQL_PASSWORD
+              value: lWZRv2D2SEX32Y5RgdC5J
+            - name: MYSQL_USER
+              value: admin
+          image: hermann90/fastfood_backend:latest
+          name: fastfood-backend
+          ports:
+            - containerPort: 8094
+          resources: {}
+      restartPolicy: Always
+status: {}

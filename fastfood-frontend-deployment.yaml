@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
+    kompose.version: 1.26.0 (40646f47)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: fastfood-frontend
+  name: fastfood-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: fastfood-frontend
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
+        kompose.version: 1.26.0 (40646f47)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/back-tier: "true"
+        io.kompose.network/db-tier: "true"
+        io.kompose.network/front-tier: "true"
+        io.kompose.service: fastfood-frontend
+    spec:
+      containers:
+        - image: hermann90/fastfood_frontend:latest
+          name: fastfood-frontend
+          ports:
+            - containerPort: 4200
+          resources: {}
+      restartPolicy: Always
+status: {}
