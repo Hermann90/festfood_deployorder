@@ -15,5 +15,6 @@ spec:
       targetPort: 4200
   selector:
     io.kompose.service: fastfoodfrontend
-status:
-  loadBalancer: {}
+  type: LoadBalancer
+# status:
+#   loadBalancer: {}
