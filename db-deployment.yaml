@@ -36,7 +36,7 @@ spec:
               value: lWZRv2D2SEX32Y5RgdC5J
             - name: MYSQL_USER
               value: admin
-          image: mysql/mysql-server:5.7
+          image: mysql:5.6
           livenessProbe:
             exec:
               command:
