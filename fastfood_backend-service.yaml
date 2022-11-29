@@ -1,19 +1,32 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   annotations:
+#     kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
+#     kompose.version: 1.26.0 (40646f47)
+#   labels:
+#     io.kompose.service: fastfoodbackend
+#   name: sfastfoodbackend
+# spec:
+#   ports:
+#     - name: "8094"
+#       port: 8094
+#       targetPort: 8094
+#   selector:
+#     io.kompose.service: fastfoodbackend
+# status:
+#   loadBalancer: {}
+---
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: fastfoodbackend
-  name: sfastfoodbackend
+  name: backend-cip-service
 spec:
-  ports:
-    - name: "8094"
-      port: 8094
-      targetPort: 8094
   selector:
-    io.kompose.service: fastfoodbackend
-status:
-  loadBalancer: {}
+    app: hello
+    tier: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8094
+...

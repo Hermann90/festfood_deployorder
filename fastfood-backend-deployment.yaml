@@ -4,26 +4,24 @@ metadata:
   annotations:
     kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
     kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
   labels:
-    io.kompose.service: fastfoodbackend
-  name: fastfoodbackend
+    io.kompose.service: backend-cip-service
+  name: backend-cip-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: fastfoodbackend
+      io.kompose.service: backend-cip-service
   strategy: {}
   template:
     metadata:
       annotations:
         kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
         kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
       labels:
         io.kompose.network/back-tier: "true"
         io.kompose.network/db-tier: "true"
-        io.kompose.service: fastfoodbackend
+        io.kompose.service: backend-cip-service
     spec:
       containers:
         - env:
@@ -36,9 +34,38 @@ spec:
             - name: MYSQL_USER
               value: admin
           image: hermann90/backfood:v1
-          name: fastfoodbackend
+          name: backend-cip-service
           ports:
             - containerPort: 8094
           resources: {}
       restartPolicy: Always
 status: {}
+
+# //////////////
+# ---
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: backend
+# spec:
+#   selector:
+#     matchLabels:
+#       app: hello
+#       tier: backend
+#       track: stable
+#   replicas: 1
+#   template:
+#     metadata:
+#       labels:
+#         app: hello
+#         tier: backend
+#         track: stable
+#     spec:
+#       containers:
+#         - name: hello
+#           image: "<image path>"
+#           imagePullPolicy: Always
+#           ports:
+#             - name: http
+#               containerPort: 80
+# ...

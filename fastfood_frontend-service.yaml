@@ -1,20 +1,36 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   annotations:
+#     kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
+#     kompose.version: 1.26.0 (40646f47)
+#   creationTimestamp: null
+#   labels:
+#     io.kompose.service: fastfoodfrontend
+#   name: sfastfoodfrontend
+# spec:
+#   ports:
+#     - name: "4200"
+#       port: 4200
+#       targetPort: 4200
+#   selector:
+#     io.kompose.service: fastfoodfrontend
+#   type: LoadBalancer
+# # status:
+# #   loadBalancer: {}
+
+---
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: fastfoodfrontend
-  name: sfastfoodfrontend
+  name: frontend-lb-service
 spec:
-  ports:
-    - name: "4200"
-      port: 4200
-      targetPort: 4200
   selector:
-    io.kompose.service: fastfoodfrontend
+    app: hello
+    tier: frontend
+  ports:
+  - protocol: "TCP"
+    port: 80
+    targetPort: 80
   type: LoadBalancer
-# status:
-#   loadBalancer: {}
+...

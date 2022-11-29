@@ -1,36 +1,64 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   annotations:
+#     kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
+#     kompose.version: 1.26.0 (40646f47)
+#   creationTimestamp: null
+#   labels:
+#     io.kompose.service: fastfoodfrontend
+#   name: fastfoodfrontend
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       io.kompose.service: fastfoodfrontend
+#   strategy: {}
+#   template:
+#     metadata:
+#       annotations:
+#         kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
+#         kompose.version: 1.26.0 (40646f47)
+#       labels:
+#         io.kompose.network/back-tier: "true"
+#         io.kompose.network/db-tier: "true"
+#         io.kompose.network/front-tier: "true"
+#         io.kompose.service: fastfoodfrontend
+#     spec:
+#       containers:
+#         - image: hermann90/frontfood:v1
+#           name: fastfoodfrontend
+#           ports:
+#             - containerPort: 4200
+#           resources: {}
+#       restartPolicy: Always
+# status: {}
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
-    kompose.version: 1.26.0 (40646f47)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: fastfoodfrontend
-  name: fastfoodfrontend
+  name: frontend
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: fastfoodfrontend
-  strategy: {}
+      app: hello
+      tier: frontend
+      track: stable
+  replicas: 1
   template:
     metadata:
-      annotations:
-        kompose.cmd: C:\Users\hermann90\projects\final_full\test_kompose\kompose.exe convert
-        kompose.version: 1.26.0 (40646f47)
-      creationTimestamp: null
       labels:
-        io.kompose.network/back-tier: "true"
-        io.kompose.network/db-tier: "true"
-        io.kompose.network/front-tier: "true"
-        io.kompose.service: fastfoodfrontend
+        app: hello
+        tier: frontend
+        track: stable
     spec:
       containers:
-        - image: hermann90/frontfood:v1
-          name: fastfoodfrontend
-          ports:
-            - containerPort: 4200
-          resources: {}
-      restartPolicy: Always
-status: {}
+        - name: nginx
+          image: hermann90/frontfood:v1
+          imagePullPolicy: Always
+          lifecycle:
+            preStop:
+              exec:
+                command: ["/usr/sbin/nginx","-s","quit"]
+...
