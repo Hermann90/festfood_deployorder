@@ -27,6 +27,6 @@ spec:
     tier: backend
   ports:
     - protocol: TCP
-      port: 8094
-      targetPort: 8094
+      port: 80
+      targetPort: 8080
 ...
