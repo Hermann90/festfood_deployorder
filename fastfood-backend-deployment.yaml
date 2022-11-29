@@ -35,7 +35,7 @@ spec:
               value: lWZRv2D2SEX32Y5RgdC5J
             - name: MYSQL_USER
               value: admin
-          image: hermann90/fastfood_backend:latest
+          image: hermann90/backfood:v1
           name: fastfoodbackend
           ports:
             - containerPort: 8094

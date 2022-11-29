@@ -27,7 +27,7 @@ spec:
         io.kompose.service: fastfoodfrontend
     spec:
       containers:
-        - image: hermann90/fastfood_frontend:latest
+        - image: hermann90/frontfood:v1
           name: fastfoodfrontend
           ports:
             - containerPort: 4200
