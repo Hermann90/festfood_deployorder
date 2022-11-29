@@ -33,7 +33,7 @@ spec:
               value: lWZRv2D2SEX32Y5RgdC5J
             - name: MYSQL_USER
               value: admin
-          image: hermann90/backfood:v1
+          image: hermann90/backfood:v2
           name: backend-cip-service
           ports:
             - containerPort: 80
