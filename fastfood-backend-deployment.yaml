@@ -36,7 +36,9 @@ spec:
           image: hermann90/backfood:v2
           name: backend-cip-service
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 80
+            # - containerPort: 8080
           resources: {}
       restartPolicy: Always
 status: {}
